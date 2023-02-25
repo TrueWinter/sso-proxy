@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= companyName %> SSO</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<% if (email) { %>
+			<!--email_off-->
+			<div>Logged in as <%= email %></div>
+			<!--/email_off-->
+			<div>
+				<button onclick="logout()">Log Out</button>
+			</div>
+			<script>
+				function logout() {
+					location.href = '/logout';
+				}
+			</script>
+		<% } else { %>
+			<div><%= companyName %> SSO</div>
+		<% } %>
+	</body>
+</html>

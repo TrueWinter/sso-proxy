@@ -1,0 +1,12 @@
+{
+	"redirects": {
+		"appname": {
+			"url": "https://app.example.com/sso.php",
+			"secret": "supersecret"
+		}
+	},
+	"companyName": "Example Company",
+	"hd": "example.com",
+	"port": 8870,
+	"secret": "verysecret"
+}
