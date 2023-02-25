@@ -16,6 +16,8 @@ The login flow is quite simple:
 
 # Installation
 
+Node.js v16+ is required.
+
 Install the dependencies:
 ```shell
 npm i
