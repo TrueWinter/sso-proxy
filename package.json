@@ -1,0 +1,20 @@
+{
+  "name": "sso-proxy",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TrueWinter",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-memfilestore": "^1.7.1",
+    "express-session": "^1.17.3",
+    "googleapis": "^111.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "safe-compare": "^1.1.4"
+  }
+}

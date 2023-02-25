@@ -1,2 +1,4 @@
 node_modules
-*.json
+config.json
+oauth.json
+sessions.json
