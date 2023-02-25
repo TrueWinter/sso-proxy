@@ -13,3 +13,12 @@ The login flow is quite simple:
 - After the user authenticates with Google, they are redirected back to SSO Proxy where the state is verified and the validity of the access token is checked. The user is then redirected back to the app with the following JWT (valid for 30 seconds) passed in the `token` query parameter:
 	- `email`: the user's email
 	- `state`: the state the app generated
+
+# Installation
+
+Install the dependencies:
+```shell
+npm i
+```
+
+Copy `config.json.example` to `config.json` and configure as needed. Save your Google OAuth key file at `oauth.json`.
