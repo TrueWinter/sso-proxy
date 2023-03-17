@@ -232,7 +232,8 @@ app.get('/oauth/google', (req, res) => {
 			'email'
 		],
 		state,
-		hd: config.domain
+		hd: config.domain,
+		prompt: 'select_account'
 	});
 
 	res.redirect(authUrl);
