@@ -1,5 +1,5 @@
 node_modules
-config.json
+*config.json
 oauth.json
 sessions.json
 lt.bat

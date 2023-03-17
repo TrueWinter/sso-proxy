@@ -28,6 +28,8 @@ npm i
 
 Copy `config.json.example` to `config.json` and configure as needed. Save your Google OAuth key file at `oauth.json`. You can get this file by creating an OAuth Client on the [Google API Console](https://console.cloud.google.com/apis/credentials).
 
+You can validate your config file using a [JSON Schema validator](https://json-schema.org/implementations.html#validator-command%20line). If you're using `ajv`, you can run the following command: `ajv validate -s config.schema.json -d config.json --strict=false --errors=text`.
+
 - `redirects`: This is where apps are configured. They are required to have the following properties:
 	- `url`: The URL that SSO Proxy will redirect the user to.
 	- `secret`: A secret used to sign the JWT token.
@@ -52,11 +54,19 @@ Copy `config.json.example` to `config.json` and configure as needed. Save your G
 		- `default`: Specifies the default data for the JWT.
 		- `overrides`: Allows for overriding JWT properties based on the value of other JWT properties. For example, the following override will set `admin` to `true` where the `email` is `admin@example.com`:
 		```json
-		"email": {
-			"admin@example.com": {
-				"admin": true
+		"overrides": {
+			"email": {
+				"admin@example.com": {
+					"admin": true
+				}
 			}
 		}
+		```
+		Alternatively, you can load a file containing the override rules by setting `ssoproxy:require` to a relative path. Doing so allows you to control overrides that apply to multiple apps from a single file. Note that when using this method, you cannot set any other overrides.
+		```json
+			"overrides": {
+				"ssoproxy:require": "overrides.config.json"
+			}
 		```
 - `companyName`: The name of the company using SSO Proxy. This will be shown in the page titles, as well as the root page if a user is not logged in.
 - `domain`: The company domain. Only accounts with the email address ending in this domain will be allowed to log into SSO Proxy.

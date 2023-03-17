@@ -64,6 +64,11 @@
 							"type": "object",
 							"description": "Allows for overriding JWT properties based on the value of other JWT properties.",
 							"minProperties": 1,
+							"properties": {
+								"ssoproxy:require": {
+									"type": "string"
+								}
+							},
 							"patternProperties": {
 								"^[a-zA-Z0-9-_]+$": {
 									"type": "object",
@@ -75,6 +80,15 @@
 										}
 									}
 								}
+							},
+							"if": {
+								"required": ["ssoproxy:require"],
+								"properties": {
+									"ssoproxy:require": true
+								}
+							},
+							"then": {
+								"maxProperties": 1
 							}
 						}
 					}

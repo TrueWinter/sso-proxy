@@ -34,6 +34,13 @@ google.options({
 	auth: oauth2Client
 });
 
+for (let app in config.redirects) {
+	if (config.redirects[app].jwt.overrides['ssoproxy:require']) {
+		config.redirects[app].jwt.overrides = require(path.join(__dirname,
+			config.redirects[app].jwt.overrides['ssoproxy:require']));
+	}
+}
+
 var sessionStore = new MemFileStore({
 	checkPeriod: 30 * 60 * 1000,
 	savePeriod: 5 * 60 * 1000,
