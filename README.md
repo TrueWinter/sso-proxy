@@ -61,5 +61,5 @@ Copy `config.json.example` to `config.json` and configure as needed. Save your G
 - `companyName`: The name of the company using SSO Proxy. This will be shown in the page titles, as well as the root page if a user is not logged in.
 - `domain`: The company domain. Only accounts with the email address ending in this domain will be allowed to log into SSO Proxy.
 - `port`: The port SSO Proxy should run on.
-- `secret`: A secret used for signing cookies.
+- `secret`: A secret used in hashes and for signing cookies.
 - `callbackUrl`: By default, the first callback URL in the `oauth.json` file will be used. This option can be used to set a different callback URL.
