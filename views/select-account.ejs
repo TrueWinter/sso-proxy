@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= companyName %> SSO</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			a, a:visited {
+				color: blue;
+				text-decoration: underline;
+			}
+
+			.login-form {
+				display: inline;
+				margin-right: 2vh;
+			}
+
+			.login-form button {
+				cursor: pointer;
+				border: 0;
+				padding: 1vh;
+				border-radius: 1vh;
+				background-color: lightgreen;
+			}
+
+			.logout-form {
+				display: inline;
+			}
+
+			.logout-form button {
+				cursor: pointer;
+				border: 0;
+				padding: 1vh;
+				border-radius: 1vh;
+				background-color: coral;
+			}
+
+			.form {
+				margin-top: 3vh;
+				margin-bottom: 3vh;
+			}
+
+			h1, h2 {
+				margin: 0;
+			}
+
+			body {
+				text-align: center;
+			}
+
+			#app {
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Select account</h1>
+		<h2>to log in to <span id="app"><%= app %></span></h2>
+		<hr />
+		<% for (var account in accounts) { %>
+			<div class="form">
+				<form method="POST" action="/login-with-current-account" class="login-form">
+					<input type="hidden" name="email" value="<%= account %>" />
+					<input type="hidden" name="app" value="<%= app %>" />
+					<input type="hidden" name="state" value="<%= appState %>" />
+					<input type="hidden" name="hash" value="<%= hash %>" />
+					<input type="hidden" name="loginToken" value="<%= accounts[account].loginToken %>" />
+					<button type="submit"><%= account %></button>
+				</form>
+				<form method="POST" action="/logout" class="logout-form">
+					<input type="hidden" name="email" value="<%= account %>" />
+					<input type="hidden" name="token" value="<%= accounts[account].loginToken %>" />
+					<input type="hidden" name="return" value="/sso/<%= app %>?state=<%= appState %>" />
+					<button type="submit">Logout</button>
+				</form>
+			</div>
+		<% } %>
+		<hr />
+		<div>
+			<a href="/oauth/google?app=<%= app %>&state=<%= appState %>&h=<%= hash %>">Log in with a different account</a>
+		</div>
+	</body>
+</html>

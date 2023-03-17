@@ -5,18 +5,27 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<% if (email) { %>
+		<% if (accounts && Object.keys(accounts).length > 0) { %>
+			<h1>Logged in as:</h1>
+			<%# Stop Cloudflare from trying to hide the emails %>
 			<!--email_off-->
-			<div>Logged in as <%= email %></div>
+			<ul>
+				<% for (var account in accounts) { %>
+					<li>
+						<span><%= account %></span>
+						<form method="POST" action="/logout" style="display: inline;">
+							<input type="hidden" name="email" value="<%= account %>" />
+							<input type="hidden" name="token" value="<%= accounts[account].loginToken %>" />
+							<input type="hidden" name="return" value="/" />
+							<button type="submit">Logout</button>
+						</form>
+					</li>
+				<% } %>
+			</ul>
 			<!--/email_off-->
-			<div>
-				<button onclick="logout()">Log Out</button>
-			</div>
-			<script>
-				function logout() {
-					location.href = '/logout';
-				}
-			</script>
+			<hr />
+			<%# TODO: SLO %>
+			<p>Please note that logging out here will not log you out of the services you have already logged in to.</p>
 		<% } else { %>
 			<div><%= companyName %> SSO</div>
 		<% } %>
